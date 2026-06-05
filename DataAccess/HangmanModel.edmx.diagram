@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="911654de15af4644a2b928e53ae2bb63" Name="Diagram1">
+        <EntityTypeShape EntityType="HangmanDBModel.Categories" Width="1.5" PointX="1.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangmanDBModel.Languages" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangmanDBModel.Matches" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangmanDBModel.MatchStatuses" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangmanDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangmanDBModel.Users" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangmanDBModel.Words" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="HangmanDBModel.FK__Categorie__Langu__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="HangmanDBModel.FK__Words__CategoryI__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="HangmanDBModel.FK__Matches__Abandon__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="HangmanDBModel.FK__Matches__Challen__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="HangmanDBModel.FK__Matches__Creator__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="HangmanDBModel.FK__Matches__StatusI__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="HangmanDBModel.FK__Matches__WinnerI__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="HangmanDBModel.FK__Matches__WordID__46E78A0C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
