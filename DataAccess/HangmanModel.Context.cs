@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using HangmanServer.DataAccess;
+
 namespace HangmanServer
 {
     using System;
