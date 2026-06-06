@@ -82,10 +82,17 @@
       <DependentUpon>HangmanModel.edmx</DependentUpon>
       <LastGenOutput>HangmanModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Service1.svc" />
+    <Content Include="Services\AccountService.svc" />
+    <Content Include="Services\CatalogService.svc" />
+    <Content Include="Services\MatchmakingService.svc" />
+    <Content Include="Services\ScoreService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\AccountManager.cs" />
+    <Compile Include="BusinessLogic\CatalogManager.cs" />
+    <Compile Include="BusinessLogic\MatchmakingManager.cs" />
+    <Compile Include="BusinessLogic\ScoreManager.cs" />
     <Compile Include="Contracts\IAccountService.cs" />
     <Compile Include="Contracts\ICatalogService.cs" />
     <Compile Include="Contracts\IMatchmakingService.cs" />
@@ -108,6 +115,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HangmanModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\IRepository.cs" />
+    <Compile Include="DataAccess\IUnitOfWork.cs" />
     <Compile Include="DataAccess\Languages.cs">
       <DependentUpon>HangmanModel.tt</DependentUpon>
     </Compile>
@@ -117,9 +126,11 @@
     <Compile Include="DataAccess\MatchStatuses.cs">
       <DependentUpon>HangmanModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\Repository.cs" />
     <Compile Include="DataAccess\sysdiagrams.cs">
       <DependentUpon>HangmanModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\UnitOfWork.cs" />
     <Compile Include="DataAccess\Users.cs">
       <DependentUpon>HangmanModel.tt</DependentUpon>
     </Compile>
@@ -132,11 +143,19 @@
     <Compile Include="DTOs\PlayerScoreDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="DTOs\WordDTO.cs" />
-    <Compile Include="Service1.svc.cs">
-      <DependentUpon>Service1.svc</DependentUpon>
-    </Compile>
-    <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AccountService.svc.cs">
+      <DependentUpon>AccountService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\CatalogService.svc.cs">
+      <DependentUpon>CatalogService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\MatchmakingService.svc.cs">
+      <DependentUpon>MatchmakingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ScoreService.svc.cs">
+      <DependentUpon>ScoreService.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
