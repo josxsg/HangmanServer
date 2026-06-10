@@ -17,6 +17,18 @@ namespace HangmanServer.Services
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class MatchmakingService : IMatchmakingService
     {
+        public async Task<int> CreateMatchAsync(string username, string categoryName, string wordText, string languageCode)
+        {
+            using (var context = new HangmanDBEntities())
+            {
+                using (var unitOfWork = new UnitOfWork(context))
+                {
+                    var manager = new MatchmakingManager(unitOfWork);
+                    return await manager.CreateMatchAsync(username, categoryName, wordText, languageCode);
+                }
+            }
+        }
+
         public async Task<List<AvailableMatchDTO>> GetAvailableMatchesAsync(string languageCode)
         {
             using (var context = new HangmanDBEntities())
@@ -25,6 +37,54 @@ namespace HangmanServer.Services
                 {
                     var manager = new MatchmakingManager(unitOfWork);
                     return await manager.GetAvailableMatchesAsync(languageCode);
+                }
+            }
+        }
+
+        public async Task<AvailableMatchDTO> GetMatchStatusAsync(int matchId)
+        {
+            using (var context = new HangmanDBEntities())
+            {
+                using (var unitOfWork = new UnitOfWork(context))
+                {
+                    var manager = new MatchmakingManager(unitOfWork);
+                    return await manager.GetMatchStatusAsync(matchId);
+                }
+            }
+        }
+
+        public async Task<bool> JoinMatchAsync(int matchId, string username)
+        {
+            using (var context = new HangmanDBEntities())
+            {
+                using (var unitOfWork = new UnitOfWork(context))
+                {
+                    var manager = new MatchmakingManager(unitOfWork);
+                    return await manager.JoinMatchAsync(matchId, username);
+                }
+            }
+        }
+
+        public async Task<bool> StartMatchAsync(int matchId)
+        {
+            using (var context = new HangmanDBEntities())
+            {
+                using (var unitOfWork = new UnitOfWork(context))
+                {
+                    var manager = new MatchmakingManager(unitOfWork);
+                    return await manager.StartMatchAsync(matchId);
+                }
+            }
+        }
+
+        public async Task<bool> LeaveMatchAsync(int matchId, bool isCreator) 
+        {
+            using (var context = new HangmanDBEntities())
+            {
+                using (var unitOfWork = new UnitOfWork(context))
+                {
+                    var manager = new MatchmakingManager(unitOfWork);
+                    return await manager.LeaveMatchAsync(matchId, isCreator);
                 }
             }
         }

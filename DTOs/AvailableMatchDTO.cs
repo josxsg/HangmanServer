@@ -16,6 +16,10 @@ namespace HangmanServer.DTOs
         [DataMember]
         public string CategoryName { get; set; }
         [DataMember]
+        public string ChallengerUsername { get; set; }
+        [DataMember]
         public DateTime CreationDate { get; set; }
+        [DataMember]
+        public int StatusId { get; set; }
     }
 }
