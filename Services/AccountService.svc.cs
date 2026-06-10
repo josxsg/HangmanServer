@@ -17,6 +17,18 @@ namespace HangmanServer.Services
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class AccountService : IAccountService
     {
+        public async Task<bool> RegisterUserAsync(UserDTO user, string password)
+        {
+            using (var context = new HangmanDBEntities())
+            {
+                using (var unitOfWork = new UnitOfWork(context))
+                {
+                    var manager = new AccountManager(unitOfWork);
+                    return await manager.RegisterUserAsync(user, password);
+                }
+            }
+        }
+
         public async Task<UserDTO> LoginAsync(string username, string password)
         {
             using (var context = new HangmanDBEntities())

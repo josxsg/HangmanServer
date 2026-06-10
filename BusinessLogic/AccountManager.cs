@@ -17,6 +17,17 @@ namespace HangmanServer.BusinessLogic
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<bool> RegisterUserAsync(UserDTO userDto, string password)
+        {
+            var existing = await _unitOfWork.Users.FindAsync(u => u.Email == userDto.Email || u.Username == userDto.Username);
+            if (existing.Any()) return false;
+
+            _unitOfWork.Users.Add(MapToEntity(userDto, password));
+            await _unitOfWork.CompleteAsync();
+
+            return true;
+        }
+
         public async Task<UserDTO> LoginAsync(string username, string password)
         {
             var users = await _unitOfWork.Users.FindAsync(u => u.Username == username && u.PasswordHash == password);
@@ -42,6 +53,18 @@ namespace HangmanServer.BusinessLogic
 
             return MapToDTO(userEntity);
         }
+
+        private Users MapToEntity(UserDTO dto, string password) => new Users
+        {
+            Name = dto.Name,
+            PaternalSurname = dto.PaternalSurname,
+            MaternalSurname = dto.MaternalSurname ?? string.Empty,
+            BirthDate = dto.BirthDate,
+            PhoneNumber = dto.PhoneNumber,
+            Email = dto.Email,
+            Username = dto.Username,
+            PasswordHash = password
+        };
 
         private UserDTO MapToDTO(Users userEntity)
         {
