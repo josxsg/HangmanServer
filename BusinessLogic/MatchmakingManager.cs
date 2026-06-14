@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using HangmanServer.DataAccess;
 using HangmanServer.DTOs;
 
@@ -60,14 +59,20 @@ namespace HangmanServer.BusinessLogic
         private async Task<Users> FetchCreatorUserAsync(string username)
         {
             var user = (await _unitOfWork.Users.FindAsync(u => u.Username == username)).FirstOrDefault();
-            if (user == null) throw new Exception("Usuario creador no encontrado.");
+            if (user == null)
+            {
+                throw new Exception("Usuario creador no encontrado.");
+            }
             return user;
         }
 
         private async Task<Words> FetchSelectedWordAsync(string wordText)
         {
             var word = (await _unitOfWork.Words.FindAsync(w => w.WordText == wordText)).FirstOrDefault();
-            if (word == null) throw new Exception("La palabra seleccionada no existe en el catálogo.");
+            if (word == null)
+            {
+                throw new Exception("La palabra seleccionada no existe en el catálogo.");
+            }
             return word;
         }
 
@@ -91,7 +96,10 @@ namespace HangmanServer.BusinessLogic
         {
             var match = (await _unitOfWork.Matches.FindAsync(m => m.MatchID == matchId)).FirstOrDefault();
 
-            if (match == null) return null;
+            if (match == null)
+            {
+                return null;
+            }
 
             string challengerName = null;
             if (match.ChallengerID != null)
@@ -121,7 +129,10 @@ namespace HangmanServer.BusinessLogic
             }
 
             var challengerUser = (await _unitOfWork.Users.FindAsync(u => u.Username == username)).FirstOrDefault();
-            if (challengerUser == null) return false;
+            if (challengerUser == null)
+            {
+                return false;
+            }
 
             match.ChallengerID = challengerUser.UserID;
 
@@ -132,10 +143,30 @@ namespace HangmanServer.BusinessLogic
         public async Task<bool> StartMatchAsync(int matchId)
         {
             var match = (await _unitOfWork.Matches.FindAsync(m => m.MatchID == matchId)).FirstOrDefault();
-            if (match == null || match.StatusID != 1) return false;
-
+            if (match == null || match.StatusID != 1 || match.ChallengerID == null)
+            {
+                return false;
+            }
+            var word = (await _unitOfWork.Words.FindAsync(w => w.WordID == match.WordID)).FirstOrDefault();
+            if (word == null)
+            {
+                return false;
+            }
+            var category = (await _unitOfWork.Categories.FindAsync(c => c.CategoryID == word.CategoryID)).FirstOrDefault();
+            string categoryName = category != null ? category.CategoryName : "General";
             match.StatusID = 2;
             await _unitOfWork.CompleteAsync();
+            var gameContext = new GameContextDTO
+            {
+                MatchId = match.MatchID,
+                CreatorId = match.CreatorID,
+                ChallengerId = match.ChallengerID.Value,
+                WordLength = word.Length,              
+                CategoryName = categoryName,           
+                WordDescription = word.Description,
+                SecretWord = word.WordText
+            };
+            GameManager.CreateRoom(gameContext);
             return true;
         }
 
@@ -143,7 +174,10 @@ namespace HangmanServer.BusinessLogic
         {
             var match = (await _unitOfWork.Matches.FindAsync(m => m.MatchID == matchId)).FirstOrDefault();
 
-            if (match == null || match.StatusID != 1) return false;
+            if (match == null || match.StatusID != 1)
+            {
+                return false;
+            }
 
             if (isCreator)
             {
@@ -157,6 +191,12 @@ namespace HangmanServer.BusinessLogic
 
             await _unitOfWork.CompleteAsync();
             return true;
+        }
+
+        public async Task<int> GetUserIdByUsernameAsync(string username)
+        {
+            var user = (await _unitOfWork.Users.FindAsync(u => u.Username == username)).FirstOrDefault();
+            return user?.UserID ?? 0;
         }
     }
 }

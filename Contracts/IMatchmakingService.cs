@@ -28,5 +28,8 @@ namespace HangmanServer.Contracts
 
         [OperationContract]
         Task<bool> LeaveMatchAsync(int matchId, bool isCreator);
+
+        [OperationContract]
+        Task<int> GetUserIdByUsernameAsync(string username);
     }
 }

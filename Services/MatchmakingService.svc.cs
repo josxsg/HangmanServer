@@ -9,6 +9,7 @@ using HangmanServer.DataAccess;
 using HangmanServer.DTOs;
 using System.Threading.Tasks;
 using HangmanServer.Contracts;
+using System.Text.RegularExpressions;
 
 namespace HangmanServer.Services
 {
@@ -85,6 +86,18 @@ namespace HangmanServer.Services
                 {
                     var manager = new MatchmakingManager(unitOfWork);
                     return await manager.LeaveMatchAsync(matchId, isCreator);
+                }
+            }
+        }
+
+        public async Task<int> GetUserIdByUsernameAsync(string username)
+        {
+            using (var context = new HangmanDBEntities())
+            {
+                using (var unitOfWork = new UnitOfWork(context))
+                {
+                    var manager = new MatchmakingManager(unitOfWork);
+                    return await manager.GetUserIdByUsernameAsync(username);
                 }
             }
         }

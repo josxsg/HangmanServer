@@ -84,6 +84,7 @@
     </Content>
     <Content Include="Services\AccountService.svc" />
     <Content Include="Services\CatalogService.svc" />
+    <Content Include="Services\GameService.svc" />
     <Content Include="Services\MatchmakingService.svc" />
     <Content Include="Services\ScoreService.svc" />
     <Content Include="Web.config" />
@@ -91,10 +92,13 @@
   <ItemGroup>
     <Compile Include="BusinessLogic\AccountManager.cs" />
     <Compile Include="BusinessLogic\CatalogManager.cs" />
+    <Compile Include="BusinessLogic\GameManager.cs" />
+    <Compile Include="BusinessLogic\GameRoom.cs" />
     <Compile Include="BusinessLogic\MatchmakingManager.cs" />
     <Compile Include="BusinessLogic\ScoreManager.cs" />
     <Compile Include="Contracts\IAccountService.cs" />
     <Compile Include="Contracts\ICatalogService.cs" />
+    <Compile Include="Contracts\IGameService.cs" />
     <Compile Include="Contracts\IMatchmakingService.cs" />
     <Compile Include="Contracts\IScoreService.cs" />
     <Compile Include="DataAccess\Categories.cs">
@@ -139,8 +143,11 @@
     </Compile>
     <Compile Include="DTOs\AvailableMatchDTO.cs" />
     <Compile Include="DTOs\CategoryDTO.cs" />
+    <Compile Include="DTOs\GameContextDTO.cs" />
+    <Compile Include="DTOs\GameEndDTO.cs" />
     <Compile Include="DTOs\MatchHistoryDTO.cs" />
     <Compile Include="DTOs\PlayerScoreDTO.cs" />
+    <Compile Include="DTOs\TurnResultDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="DTOs\WordDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,6 +156,9 @@
     </Compile>
     <Compile Include="Services\CatalogService.svc.cs">
       <DependentUpon>CatalogService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\GameService.svc.cs">
+      <DependentUpon>GameService.svc</DependentUpon>
     </Compile>
     <Compile Include="Services\MatchmakingService.svc.cs">
       <DependentUpon>MatchmakingService.svc</DependentUpon>
