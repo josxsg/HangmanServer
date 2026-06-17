@@ -19,5 +19,8 @@ namespace HangmanServer.Contracts
 
         [OperationContract]
         Task<UserDTO> GetUserProfileAsync(int userId);
+
+        [OperationContract]
+        Task<bool> UpdateUserProfileAsync(UserDTO userDto);
     }
 }

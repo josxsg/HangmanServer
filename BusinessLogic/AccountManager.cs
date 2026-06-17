@@ -54,6 +54,26 @@ namespace HangmanServer.BusinessLogic
             return MapToDTO(userEntity);
         }
 
+        public async Task<bool> UpdateUserProfileAsync(UserDTO userDto)
+        {
+            var users = await _unitOfWork.Users.FindAsync(u => u.UserID == userDto.UserId);
+            var userEntity = users.FirstOrDefault();
+
+            if (userEntity == null) return false;
+
+            var existingUsername = await _unitOfWork.Users.FindAsync(u => u.Username == userDto.Username && u.UserID != userDto.UserId);
+            if (existingUsername.Any()) return false; 
+
+            userEntity.Name = userDto.Name;
+            userEntity.PaternalSurname = userDto.PaternalSurname;
+            userEntity.Username = userDto.Username;
+            userEntity.PhoneNumber = userDto.PhoneNumber;
+
+            await _unitOfWork.CompleteAsync();
+
+            return true;
+        }
+
         private Users MapToEntity(UserDTO dto, string password) => new Users
         {
             Name = dto.Name,

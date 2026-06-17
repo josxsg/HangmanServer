@@ -52,5 +52,17 @@ namespace HangmanServer.Services
                 }
             }
         }
+
+        public async Task<bool> UpdateUserProfileAsync(UserDTO userDto)
+        {
+            using (var context = new HangmanDBEntities())
+            {
+                using (var unitOfWork = new UnitOfWork(context))
+                {
+                    var manager = new AccountManager(unitOfWork);
+                    return await manager.UpdateUserProfileAsync(userDto);
+                }
+            }
+        }
     }
 }
