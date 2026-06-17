@@ -89,17 +89,5 @@ namespace HangmanServer.Services
                 }
             }
         }
-
-        public async Task<int> GetUserIdByUsernameAsync(string username)
-        {
-            using (var context = new HangmanDBEntities())
-            {
-                using (var unitOfWork = new UnitOfWork(context))
-                {
-                    var manager = new MatchmakingManager(unitOfWork);
-                    return await manager.GetUserIdByUsernameAsync(username);
-                }
-            }
-        }
     }
 }
