@@ -16,26 +16,6 @@ namespace HangmanServer.BusinessLogic
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<AvailableMatchDTO>> GetAvailableMatchesAsync(string languageCode)
-        {
-            var matches = await _unitOfWork.Matches.FindAsync(m => m.ChallengerID == null && m.StatusID == 1);
-
-            var availableMatchesList = new List<AvailableMatchDTO>();
-
-            foreach (var match in matches)
-            {
-                availableMatchesList.Add(new AvailableMatchDTO
-                {
-                    MatchId = match.MatchID,
-                    CreatorUsername = match.Users?.Username ?? "Desconocido",
-                    CategoryName = match.Words?.Categories?.CategoryName ?? "General",
-                    CreationDate = match.CreationDate ?? System.DateTime.Now
-                });
-            }
-
-            return availableMatchesList;
-        }
-
         public async Task<int> CreateMatchAsync(string username, string categoryName, string wordText, string languageCode)
         {
             var creatorUser = await FetchCreatorUserAsync(username);
@@ -90,6 +70,41 @@ namespace HangmanServer.BusinessLogic
             } while (idExists);
 
             return newMatchId;
+        }
+
+        public async Task<List<AvailableMatchDTO>> GetAvailableMatchesAsync(string languageCode)
+        {
+            var matches = await _unitOfWork.Matches.FindAsync(m => m.ChallengerID == null && m.StatusID == 1);
+
+            var availableMatchesList = new List<AvailableMatchDTO>();
+
+            foreach (var match in matches)
+            {
+                var creator = (await _unitOfWork.Users.FindAsync(u => u.UserID == match.CreatorID)).FirstOrDefault();
+                string creatorUsername = creator != null ? creator.Username : "Desconocido";
+
+                var word = (await _unitOfWork.Words.FindAsync(w => w.WordID == match.WordID)).FirstOrDefault();
+                string categoryName = "General";
+
+                if (word != null)
+                {
+                    var category = (await _unitOfWork.Categories.FindAsync(c => c.CategoryID == word.CategoryID)).FirstOrDefault();
+                    if (category != null)
+                    {
+                        categoryName = category.CategoryName;
+                    }
+                }
+
+                availableMatchesList.Add(new AvailableMatchDTO
+                {
+                    MatchId = match.MatchID,
+                    CreatorUsername = creatorUsername,
+                    CategoryName = categoryName,
+                    CreationDate = match.CreationDate ?? System.DateTime.Now
+                });
+            }
+
+            return availableMatchesList;
         }
 
         public async Task<AvailableMatchDTO> GetMatchStatusAsync(int matchId)
