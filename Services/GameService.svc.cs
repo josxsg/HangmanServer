@@ -64,5 +64,17 @@ namespace HangmanServer.Services
                 Console.WriteLine($"Error LeaveMatch: {ex.Message}");
             }
         }
+
+        public void SendChatMessage(int matchId, string senderUsername, string message)
+        {
+            try
+            {
+                GameManager.BroadcastChatMessage(matchId, senderUsername, message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error SendChatMessage: {ex.Message}");
+            }
+        }
     }
 }

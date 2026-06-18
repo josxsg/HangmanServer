@@ -56,6 +56,27 @@ namespace HangmanServer.BusinessLogic
             _turnTimer.Elapsed += OnTimerTick;
         }
 
+        public void BroadcastChatMessage(string senderUsername, string message)
+        {
+            lock (_syncLock)
+            {
+                if (_currentState == GameState.Finished)
+                    return;
+
+                if (_creatorCallback != null)
+                {
+                    try { _creatorCallback.OnChatMessageReceived(senderUsername, message); }
+                    catch {  }
+                }
+
+                if (_challengerCallback != null)
+                {
+                    try { _challengerCallback.OnChatMessageReceived(senderUsername, message); }
+                    catch { }
+                }
+            }
+        }
+
         public void Join(int userId, IGameCallback callback)
         {
             lock (_syncLock)

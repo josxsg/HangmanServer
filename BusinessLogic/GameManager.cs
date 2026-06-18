@@ -58,6 +58,14 @@ namespace HangmanServer.BusinessLogic
             }
         }
 
+        public static void BroadcastChatMessage(int matchId, string senderUsername, string message)
+        {
+            if (_activeRooms.TryGetValue(matchId, out GameRoom room))
+            {
+                room.BroadcastChatMessage(senderUsername, message);
+            }
+        }
+
         private static async void OnRoomFinished(int matchId, GameEndDTO result)
         {
             if (_activeRooms.TryRemove(matchId, out GameRoom room))

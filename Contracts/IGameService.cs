@@ -21,6 +21,9 @@ namespace HangmanServer.Contracts
 
         [OperationContract(IsOneWay = true)]
         void LeaveMatch(int matchId, int userId);
+
+        [OperationContract(IsOneWay = true)]
+        void SendChatMessage(int matchId, string senderUsername, string message);
     }
 
     
@@ -40,5 +43,8 @@ namespace HangmanServer.Contracts
 
         [OperationContract(IsOneWay = true)]
         void OnTimerTick(int secondsLeft);
+
+        [OperationContract(IsOneWay = true)]
+        void OnChatMessageReceived(string senderUsername, string message);
     }
 }
