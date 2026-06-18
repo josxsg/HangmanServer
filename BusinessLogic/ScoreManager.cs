@@ -62,23 +62,51 @@ namespace HangmanServer.BusinessLogic
 
         public async Task<List<MatchHistoryDTO>> GetMatchHistoryAsync(int userId)
         {
-            var userMatches = await _unitOfWork.Matches.FindAsync(m => (m.CreatorID == userId || m.ChallengerID == userId) && m.EndDate != null);
+            var userMatches = await _unitOfWork.Matches.FindAsync(
+                m => (m.CreatorID == userId || m.ChallengerID == userId) && m.EndDate != null,
+                "Words"
+            );
+
+            var rivalIds = userMatches
+                .Select(m => m.CreatorID == userId ? m.ChallengerID : m.CreatorID)
+                .Where(id => id.HasValue)
+                .Select(id => id.Value)
+                .Distinct()
+                .ToList();
+
+
+            var rivals = await _unitOfWork.Users.FindAsync(u => rivalIds.Contains(u.UserID));
+            var rivalDictionary = rivals.ToDictionary(u => u.UserID, u => u.Username);
+
             var historyList = new List<MatchHistoryDTO>();
 
             foreach (var match in userMatches)
             {
                 string result = "Desconocido";
-                if (match.AbandonerID != null)
+                int points = 0;
+                string rivalName = "N/A";
+
+                if (match.AbandonerID == userId)
                 {
                     result = "Abandonada";
+                    points = -3;
                 }
                 else if (match.WinnerID == userId)
                 {
                     result = "Ganada";
+                    points = (match.ChallengerID == userId) ? 10 : 5;
                 }
                 else if (match.WinnerID != null && match.WinnerID != userId)
                 {
                     result = "Perdida";
+                    points = 0;
+                }
+
+                int? currentRivalId = (match.CreatorID == userId) ? match.ChallengerID : match.CreatorID;
+
+                if (currentRivalId.HasValue && rivalDictionary.ContainsKey(currentRivalId.Value))
+                {
+                    rivalName = rivalDictionary[currentRivalId.Value];
                 }
 
                 historyList.Add(new MatchHistoryDTO
@@ -86,14 +114,13 @@ namespace HangmanServer.BusinessLogic
                     MatchId = match.MatchID,
                     Date = match.EndDate ?? match.CreationDate ?? System.DateTime.Now,
                     WordText = match.Words?.WordText ?? "Desconocida",
-                    RivalUsername = match.CreatorID == userId ?
-                                    (match.Users1?.Username ?? "N/A") : 
-                                    (match.Users?.Username ?? "N/A"),
-                    Result = result
+                    RivalUsername = rivalName,
+                    Result = result,
+                    Points = points
                 });
             }
 
-            return historyList;
+            return historyList.OrderByDescending(h => h.Date).ToList();
         }
     }
 }

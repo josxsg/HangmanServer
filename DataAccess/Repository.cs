@@ -26,10 +26,19 @@ namespace HangmanServer.DataAccess
         {
             return await Context.Set<TEntity>().ToListAsync();
         }
-
-        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate, params string[] includes)
         {
-            return await Context.Set<TEntity>().Where(predicate).ToListAsync();
+            IQueryable<TEntity> query = Context.Set<TEntity>();
+
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include); 
+                }
+            }
+
+            return await query.Where(predicate).ToListAsync();
         }
 
         public void Add(TEntity entity)

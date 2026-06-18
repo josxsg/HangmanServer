@@ -18,6 +18,9 @@ namespace HangmanServer.DTOs
         [DataMember]
         public string RivalUsername { get; set; }
         [DataMember]
-        public string Result { get; set; } 
+        public string Result { get; set; }
+
+        [DataMember]
+        public int Points { get; set; }
     }
 }

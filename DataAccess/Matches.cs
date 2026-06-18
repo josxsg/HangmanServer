@@ -24,11 +24,11 @@ namespace HangmanServer.DataAccess
         public Nullable<int> WinnerID { get; set; }
         public Nullable<int> AbandonerID { get; set; }
     
-        public virtual Users Users { get; set; }
-        public virtual Users Users1 { get; set; }
-        public virtual Users Users2 { get; set; }
+        public virtual Users CreatorUser { get; set; }
+        public virtual Users ChallengerUser { get; set; }
+        public virtual Users WinnerUser { get; set; }
         public virtual MatchStatuses MatchStatuses { get; set; }
-        public virtual Users Users3 { get; set; }
+        public virtual Users AbandonerUser { get; set; }
         public virtual Words Words { get; set; }
     }
 }

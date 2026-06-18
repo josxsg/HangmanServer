@@ -248,11 +248,11 @@
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="WinnerID" Type="Int32" />
           <Property Name="AbandonerID" Type="Int32" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Matches__Abandon__49C3F6B7" FromRole="Matches" ToRole="Users" />
-          <NavigationProperty Name="Users1" Relationship="Self.FK__Matches__Challen__45F365D3" FromRole="Matches" ToRole="Users" />
-          <NavigationProperty Name="Users2" Relationship="Self.FK__Matches__Creator__44FF419A" FromRole="Matches" ToRole="Users" />
+          <NavigationProperty Name="CreatorUser" Relationship="Self.FK__Matches__Abandon__49C3F6B7" FromRole="Matches" ToRole="Users" />
+          <NavigationProperty Name="ChallengerUser" Relationship="Self.FK__Matches__Challen__45F365D3" FromRole="Matches" ToRole="Users" />
+          <NavigationProperty Name="WinnerUser" Relationship="Self.FK__Matches__Creator__44FF419A" FromRole="Matches" ToRole="Users" />
           <NavigationProperty Name="MatchStatuses" Relationship="Self.FK__Matches__StatusI__47DBAE45" FromRole="Matches" ToRole="MatchStatuses" />
-          <NavigationProperty Name="Users3" Relationship="Self.FK__Matches__WinnerI__48CFD27E" FromRole="Matches" ToRole="Users" />
+          <NavigationProperty Name="AbandonerUser" Relationship="Self.FK__Matches__WinnerI__48CFD27E" FromRole="Matches" ToRole="Users" />
           <NavigationProperty Name="Words" Relationship="Self.FK__Matches__WordID__46E78A0C" FromRole="Matches" ToRole="Words" />
         </EntityType>
         <EntityType Name="MatchStatuses">

@@ -126,7 +126,7 @@ namespace HangmanServer.BusinessLogic
             return new AvailableMatchDTO
             {
                 MatchId = match.MatchID,
-                CreatorUsername = match.Users?.Username ?? "Desconocido",
+                CreatorUsername = match.CreatorUser?.Username ?? "Desconocido",
                 CategoryName = match.Words?.Categories?.CategoryName ?? "General",
                 CreationDate = match.CreationDate ?? System.DateTime.Now,
                 ChallengerUsername = challengerName,
