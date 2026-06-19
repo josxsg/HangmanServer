@@ -46,5 +46,8 @@ namespace HangmanServer.Contracts
 
         [OperationContract(IsOneWay = true)]
         void OnChatMessageReceived(string senderUsername, string message);
+
+        [OperationContract(IsOneWay = true)]
+        void OnEvaluationError();
     }
 }

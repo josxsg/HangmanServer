@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel;
 using System.Timers;
 using HangmanServer.Contracts;
@@ -173,6 +174,44 @@ namespace HangmanServer.BusinessLogic
                 if (userId != _creatorId)
                 {
                     throw new UnauthorizedAccessException("Solo el creador puede evaluar la letra.");
+                }
+
+                string secretWord = _context.SecretWord.ToUpper();
+                char guessedLetter = char.ToUpper(_lastGuessedLetter);
+
+                List<int> actualPositions = new List<int>();
+                for (int i = 0; i < secretWord.Length; i++)
+                {
+                    if (secretWord[i] == guessedLetter)
+                    {
+                        actualPositions.Add(i);
+                    }
+                }
+
+                bool hasError = false;
+
+                if (actualPositions.Count > 0 && !isCorrect)
+                {
+                    hasError = true;
+                }
+                else if (actualPositions.Count == 0 && isCorrect)
+                {
+                    hasError = true;
+                }
+                else if (isCorrect)
+                {
+                    if (correctPositions == null ||
+                        actualPositions.Count != correctPositions.Length ||
+                        !actualPositions.All(correctPositions.Contains))
+                    {
+                        hasError = true;
+                    }
+                }
+
+                if (hasError)
+                {
+                    _creatorCallback.OnEvaluationError();
+                    return;
                 }
 
                 if (!isCorrect)
