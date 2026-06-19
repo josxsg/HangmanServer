@@ -53,8 +53,7 @@ namespace HangmanServer.BusinessLogic
 
             return MapToDTO(userEntity);
         }
-
-        public async Task<bool> UpdateUserProfileAsync(UserDTO userDto)
+        public async Task<bool> UpdateUserProfileAsync(UserDTO userDto, string newPassword)
         {
             var users = await _unitOfWork.Users.FindAsync(u => u.UserID == userDto.UserId);
             var userEntity = users.FirstOrDefault();
@@ -62,12 +61,19 @@ namespace HangmanServer.BusinessLogic
             if (userEntity == null) return false;
 
             var existingUsername = await _unitOfWork.Users.FindAsync(u => u.Username == userDto.Username && u.UserID != userDto.UserId);
-            if (existingUsername.Any()) return false; 
+            if (existingUsername.Any()) return false;
 
             userEntity.Name = userDto.Name;
             userEntity.PaternalSurname = userDto.PaternalSurname;
+            userEntity.MaternalSurname = userDto.MaternalSurname ?? string.Empty;
+            userEntity.BirthDate = userDto.BirthDate;
             userEntity.Username = userDto.Username;
             userEntity.PhoneNumber = userDto.PhoneNumber;
+
+            if (!string.IsNullOrEmpty(newPassword))
+            {
+                userEntity.PasswordHash = newPassword;
+            }
 
             await _unitOfWork.CompleteAsync();
 
