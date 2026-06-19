@@ -371,10 +371,11 @@ namespace HangmanServer.BusinessLogic
         private void HandleTimeout()
         {
             _turnTimer.Stop();
-            _currentState = GameState.Finished;
 
             int penalizedUser = _currentState == GameState.GuesserTurn ? _challengerId : _creatorId;
             int winnerUser = _currentState == GameState.GuesserTurn ? _creatorId : _challengerId;
+
+            _currentState = GameState.Finished;
 
             var endResult = new GameEndDTO
             {
