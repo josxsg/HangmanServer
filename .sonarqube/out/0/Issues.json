@@ -1,0 +1,262 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Compilador de Microsoft (R) Visual C#",
+        "version": "4.14.0.0",
+        "fileVersion": "4.14.0-3.25412.6 (c167adef)",
+        "semanticVersion": "4.14.0",
+        "language": "es-ES"
+      },
+      "results": [
+        {
+          "ruleId": "S2068",
+          "level": "warning",
+          "message": "\"password\" detected here, make sure this is not a hard-coded credential.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/Web.config",
+                "region": {
+                  "startLine": 70,
+                  "startColumn": 35,
+                  "endLine": 70,
+                  "endColumn": 51
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'CategoryDTO' to match pascal case naming rules, consider using 'CategoryDto'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/CategoryDTO.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 18,
+                  "endLine": 10,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'GameEndDTO' to match pascal case naming rules, consider using 'GameEndDto'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/GameEndDTO.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 18,
+                  "endLine": 10,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'AvailableMatchDTO' to match pascal case naming rules, consider using 'AvailableMatchDto'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/AvailableMatchDTO.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 18,
+                  "endLine": 10,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'MatchHistoryDTO' to match pascal case naming rules, consider using 'MatchHistoryDto'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/MatchHistoryDTO.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 18,
+                  "endLine": 10,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'GameContextDTO' to match pascal case naming rules, consider using 'GameContextDto'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/GameContextDTO.cs",
+                "region": {
+                  "startLine": 6,
+                  "startColumn": 18,
+                  "endLine": 6,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'PlayerScoreDTO' to match pascal case naming rules, consider using 'PlayerScoreDto'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/PlayerScoreDTO.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 18,
+                  "endLine": 10,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'TurnResultDTO' to match pascal case naming rules, consider using 'TurnResultDto'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/TurnResultDTO.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 18,
+                  "endLine": 10,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'UserDTO' to match pascal case naming rules, consider using 'UserDto'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/UserDTO.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 18,
+                  "endLine": 10,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'WordDTO' to match pascal case naming rules, consider using 'WordDto'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/WordDTO.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 18,
+                  "endLine": 10,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "S101": {
+          "id": "S101",
+          "shortDescription": "Types should be named in PascalCase",
+          "fullDescription": "Shared naming conventions allow teams to collaborate efficiently.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-101",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S2068": {
+          "id": "S2068",
+          "shortDescription": "Hard-coded credentials are security-sensitive",
+          "fullDescription": "Because it is easy to extract strings from an application source code or binary, credentials should not be hard-coded. This is particularly true for applications that are distributed or that are open-source.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2068",
+          "properties": {
+            "category": "Blocker Security Hotspot",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

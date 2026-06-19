@@ -22,13 +22,13 @@ namespace HangmanServer.BusinessLogic
         private const int TurnDurationSeconds = 60;
 
         public int MatchId { get; private set; }
-        private int _creatorId;
-        private int _challengerId;
-        private GameContextDTO _context;
+        private readonly int _creatorId;
+        private readonly int _challengerId;
+        private readonly GameContextDTO _context;
 
         private GameState _currentState;
         private int _currentMistakes;
-        private HashSet<char> _guessedLetters; 
+        private readonly HashSet<char> _guessedLetters; 
         private int _revealedLettersCount;
         private char _lastGuessedLetter;
 
@@ -36,7 +36,7 @@ namespace HangmanServer.BusinessLogic
         private IGameCallback _challengerCallback;
 
         private readonly object _syncLock = new object();
-        private Timer _turnTimer;
+        private readonly Timer _turnTimer;
         private int _secondsLeft;
 
         public event Action<int, GameEndDTO> RoomFinished;
@@ -66,14 +66,25 @@ namespace HangmanServer.BusinessLogic
 
                 if (_creatorCallback != null)
                 {
-                    try { _creatorCallback.OnChatMessageReceived(senderUsername, message); }
-                    catch {  }
+                    try { 
+                        _creatorCallback.OnChatMessageReceived(senderUsername, message); 
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error al enviar mensaje de chat al creador: {ex.Message}");
+                    }
                 }
 
                 if (_challengerCallback != null)
                 {
-                    try { _challengerCallback.OnChatMessageReceived(senderUsername, message); }
-                    catch { }
+                    try { 
+                        _challengerCallback.OnChatMessageReceived(senderUsername, message); 
+                    }
+                    catch (Exception ex) 
+                    {
+                        Console.WriteLine($"Error al enviar mensaje de chat al retador: {ex.Message}");
+
+                    }
                 }
             }
         }
@@ -188,25 +199,9 @@ namespace HangmanServer.BusinessLogic
                     }
                 }
 
-                bool hasError = false;
-
-                if (actualPositions.Count > 0 && !isCorrect)
-                {
-                    hasError = true;
-                }
-                else if (actualPositions.Count == 0 && isCorrect)
-                {
-                    hasError = true;
-                }
-                else if (isCorrect)
-                {
-                    if (correctPositions == null ||
-                        actualPositions.Count != correctPositions.Length ||
-                        !actualPositions.All(correctPositions.Contains))
-                    {
-                        hasError = true;
-                    }
-                }
+                bool hasError = (actualPositions.Count > 0 && !isCorrect) ||
+                                (actualPositions.Count == 0 && isCorrect) ||
+                                (isCorrect && (correctPositions == null || actualPositions.Count != correctPositions.Length || !actualPositions.All(correctPositions.Contains)));
 
                 if (hasError)
                 {
@@ -216,11 +211,11 @@ namespace HangmanServer.BusinessLogic
 
                 if (!isCorrect)
                 {
-                    _currentMistakes++; 
+                    _currentMistakes++;
                 }
                 else if (correctPositions != null)
                 {
-                    _revealedLettersCount += correctPositions.Length; 
+                    _revealedLettersCount += correctPositions.Length;
                 }
 
                 var turnResult = new TurnResultDTO
@@ -231,36 +226,40 @@ namespace HangmanServer.BusinessLogic
                     CurrentMistakes = _currentMistakes
                 };
 
-                try
-                {
-                    _creatorCallback.OnTurnResultReceived(turnResult);
-                }
-                catch (TimeoutException ex)
-                {
-                    Console.WriteLine($"Timeout al notificar al creador en la partida {MatchId}: {ex.Message}");
-                }
-                catch (CommunicationException ex)
-                {
-                    Console.WriteLine($"Error de conexión con el creador en la partida {MatchId}: {ex.Message}");
-                }
-
-                try
-                {
-                    _challengerCallback.OnTurnResultReceived(turnResult);
-                }
-                catch (TimeoutException ex)
-                {
-                    Console.WriteLine($"Timeout al notificar al retador en la partida {MatchId}: {ex.Message}");
-                }
-                catch (CommunicationException ex)
-                {
-                    Console.WriteLine($"Error de conexión con el retador en la partida {MatchId}: {ex.Message}");
-                }
+                NotifyTurnResultToPlayers(turnResult);
 
                 CheckWinConditions();
             }
         }
 
+        private void NotifyTurnResultToPlayers(TurnResultDTO turnResult)
+        {
+            try
+            {
+                _creatorCallback.OnTurnResultReceived(turnResult);
+            }
+            catch (TimeoutException ex)
+            {
+                Console.WriteLine($"Timeout al notificar al creador en la partida {MatchId}: {ex.Message}");
+            }
+            catch (CommunicationException ex)
+            {
+                Console.WriteLine($"Error de conexión con el creador en la partida {MatchId}: {ex.Message}");
+            }
+
+            try
+            {
+                _challengerCallback.OnTurnResultReceived(turnResult);
+            }
+            catch (TimeoutException ex)
+            {
+                Console.WriteLine($"Timeout al notificar al retador en la partida {MatchId}: {ex.Message}");
+            }
+            catch (CommunicationException ex)
+            {
+                Console.WriteLine($"Error de conexión con el retador en la partida {MatchId}: {ex.Message}");
+            }
+        }
         private void StartGame()
         {
             _currentState = GameState.GuesserTurn;

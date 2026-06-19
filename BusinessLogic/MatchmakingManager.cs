@@ -41,7 +41,7 @@ namespace HangmanServer.BusinessLogic
             var user = (await _unitOfWork.Users.FindAsync(u => u.Username == username)).FirstOrDefault();
             if (user == null)
             {
-                throw new Exception("Usuario creador no encontrado.");
+                throw new KeyNotFoundException("Usuario creador no encontrado.");
             }
             return user;
         }
@@ -51,25 +51,9 @@ namespace HangmanServer.BusinessLogic
             var word = (await _unitOfWork.Words.FindAsync(w => w.WordText == wordText)).FirstOrDefault();
             if (word == null)
             {
-                throw new Exception("La palabra seleccionada no existe en el catálogo.");
+                throw new KeyNotFoundException("La palabra seleccionada no existe en el catálogo.");
             }
             return word;
-        }
-
-        private async Task<int> GenerateUniqueMatchIdAsync()
-        {
-            var random = new Random();
-            int newMatchId;
-            bool idExists;
-
-            do
-            {
-                newMatchId = random.Next(1000, 10000);
-                var existing = await _unitOfWork.Matches.FindAsync(m => m.MatchID == newMatchId);
-                idExists = existing.Any();
-            } while (idExists);
-
-            return newMatchId;
         }
 
         public async Task<List<AvailableMatchDTO>> GetAvailableMatchesAsync(string languageCode)

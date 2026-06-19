@@ -9,6 +9,7 @@ namespace HangmanServer.DataAccess
     public class UnitOfWork : IUnitOfWork
     {
         private readonly HangmanDBEntities _context;
+        private bool _disposed = false;
 
         public IRepository<Users> Users { get; private set; }
         public IRepository<Matches> Matches { get; private set; }
@@ -29,9 +30,23 @@ namespace HangmanServer.DataAccess
             return await _context.SaveChangesAsync();
         }
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _context?.Dispose();
+                }
+
+                _disposed = true;
+            }
+        }
+
         public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

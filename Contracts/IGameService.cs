@@ -26,7 +26,7 @@ namespace HangmanServer.Contracts
         void SendChatMessage(int matchId, string senderUsername, string message);
     }
 
-    
+    [ServiceContract]
     public interface IGameCallback
     {
         [OperationContract(IsOneWay = true)]

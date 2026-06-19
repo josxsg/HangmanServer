@@ -1,0 +1,1 @@
+SREC:\Users\migue\OneDrive\Escritorio\HangmanServer\HangmanServer.csprojò	CSharp7_3

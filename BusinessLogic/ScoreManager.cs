@@ -32,7 +32,7 @@ namespace HangmanServer.BusinessLogic
                 {
                     totalScore -= 3;
                     penalties++;
-                    continue; 
+                    continue;
                 }
 
                 if (match.ChallengerID == userId && match.WinnerID == userId)
@@ -67,47 +67,13 @@ namespace HangmanServer.BusinessLogic
                 "Words"
             );
 
-            var rivalIds = userMatches
-                .Select(m => m.CreatorID == userId ? m.ChallengerID : m.CreatorID)
-                .Where(id => id.HasValue)
-                .Select(id => id.Value)
-                .Distinct()
-                .ToList();
-
-
-            var rivals = await _unitOfWork.Users.FindAsync(u => rivalIds.Contains(u.UserID));
-            var rivalDictionary = rivals.ToDictionary(u => u.UserID, u => u.Username);
-
+            var rivalDictionary = await BuildRivalDictionaryAsync(userMatches, userId);
             var historyList = new List<MatchHistoryDTO>();
 
             foreach (var match in userMatches)
             {
-                string result = "Desconocido";
-                int points = 0;
-                string rivalName = "N/A";
-
-                if (match.AbandonerID == userId)
-                {
-                    result = "Abandonada";
-                    points = -3;
-                }
-                else if (match.WinnerID == userId)
-                {
-                    result = "Ganada";
-                    points = (match.ChallengerID == userId) ? 10 : 5;
-                }
-                else if (match.WinnerID != null && match.WinnerID != userId)
-                {
-                    result = "Perdida";
-                    points = 0;
-                }
-
-                int? currentRivalId = (match.CreatorID == userId) ? match.ChallengerID : match.CreatorID;
-
-                if (currentRivalId.HasValue && rivalDictionary.ContainsKey(currentRivalId.Value))
-                {
-                    rivalName = rivalDictionary[currentRivalId.Value];
-                }
+                var (result, points) = EvaluateMatchResult(match, userId);
+                string rivalName = GetRivalName(match, userId, rivalDictionary);
 
                 historyList.Add(new MatchHistoryDTO
                 {
@@ -121,6 +87,52 @@ namespace HangmanServer.BusinessLogic
             }
 
             return historyList.OrderByDescending(h => h.Date).ToList();
+        }
+
+        private async Task<Dictionary<int, string>> BuildRivalDictionaryAsync(IEnumerable<Matches> userMatches, int userId)
+        {
+            var rivalIds = userMatches
+                .Select(m => m.CreatorID == userId ? m.ChallengerID : m.CreatorID)
+                .Where(id => id.HasValue)
+                .Select(id => id.Value)
+                .Distinct()
+                .ToList();
+
+            var rivals = await _unitOfWork.Users.FindAsync(u => rivalIds.Contains(u.UserID));
+            return rivals.ToDictionary(u => u.UserID, u => u.Username);
+        }
+
+        private static (string Result, int Points) EvaluateMatchResult(Matches match, int userId)
+        {
+            if (match.AbandonerID == userId)
+            {
+                return ("Abandonada", -3);
+            }
+
+            if (match.WinnerID == userId)
+            {
+                int points = (match.ChallengerID == userId) ? 10 : 5;
+                return ("Ganada", points);
+            }
+
+            if (match.WinnerID != null && match.WinnerID != userId)
+            {
+                return ("Perdida", 0);
+            }
+
+            return ("Desconocido", 0);
+        }
+
+        private static string GetRivalName(Matches match, int userId, Dictionary<int, string> rivalDictionary)
+        {
+            int? currentRivalId = (match.CreatorID == userId) ? match.ChallengerID : match.CreatorID;
+
+            if (currentRivalId.HasValue && rivalDictionary.TryGetValue(currentRivalId.Value, out string name))
+            {
+                return name;
+            }
+
+            return "N/A";
         }
     }
 }

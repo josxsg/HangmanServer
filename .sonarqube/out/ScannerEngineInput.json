@@ -1,0 +1,96 @@
+{
+  "scannerProperties": [
+    {
+      "key": "sonar.scanner.app",
+      "value": "ScannerMSBuild"
+    },
+    {
+      "key": "sonar.scanner.appVersion",
+      "value": "11.0"
+    },
+    {
+      "key": "sonar.scanner.bootstrapStartTime",
+      "value": "1781886312000"
+    },
+    {
+      "key": "sonar.projectKey",
+      "value": "hangmanServer"
+    },
+    {
+      "key": "sonar.working.directory",
+      "value": "C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\.sonarqube\\out\\.sonar"
+    },
+    {
+      "key": "sonar.projectBaseDir",
+      "value": "C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer"
+    },
+    {
+      "key": "sonar.pullrequest.cache.basepath",
+      "value": "C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer"
+    },
+    {
+      "key": "sonar.sources",
+      "value": ""
+    },
+    {
+      "key": "sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "sonar.modules",
+      "value": "08BCF73D-F901-40C3-8524-4C064DF723D4"
+    },
+    {
+      "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.projectKey",
+      "value": "hangmanServer:08BCF73D-F901-40C3-8524-4C064DF723D4"
+    },
+    {
+      "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.projectName",
+      "value": "HangmanServer"
+    },
+    {
+      "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.projectBaseDir",
+      "value": "C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer"
+    },
+    {
+      "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.working.directory",
+      "value": "C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\.sonarqube\\out\\.sonar\\mod0"
+    },
+    {
+      "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.sourceEncoding",
+      "value": "utf-8"
+    },
+    {
+      "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.sources",
+      "value": "C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\BusinessLogic\\AccountManager.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\BusinessLogic\\CatalogManager.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\BusinessLogic\\GameManager.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\BusinessLogic\\GameRoom.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\BusinessLogic\\MatchmakingManager.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\BusinessLogic\\ScoreManager.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Contracts\\IAccountService.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Contracts\\ICatalogService.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Contracts\\IGameService.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Contracts\\IMatchmakingService.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Contracts\\IScoreService.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\Categories.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\IRepository.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\IUnitOfWork.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\Languages.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\Matches.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\MatchStatuses.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\Repository.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\sysdiagrams.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\UnitOfWork.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\Users.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\Words.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DTOs\\AvailableMatchDTO.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DTOs\\CategoryDTO.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DTOs\\GameContextDTO.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DTOs\\GameEndDTO.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DTOs\\MatchHistoryDTO.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DTOs\\PlayerScoreDTO.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DTOs\\TurnResultDTO.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DTOs\\UserDTO.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DTOs\\WordDTO.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Properties\\AssemblyInfo.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Services\\AccountService.svc.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Services\\CatalogService.svc.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Services\\GameService.svc.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Services\\MatchmakingService.svc.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Services\\ScoreService.svc.cs,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\HangmanModel.Context.tt,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\HangmanModel.tt,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Services\\AccountService.svc,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Services\\CatalogService.svc,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Services\\GameService.svc,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Services\\MatchmakingService.svc,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Services\\ScoreService.svc,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Web.config,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\HangmanModel.edmx.diagram,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\DataAccess\\HangmanModel.edmx,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\packages.config,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Web.Debug.config,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\Web.Release.config,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\bin\\HangmanServer.dll.config,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\.vs\\HangmanServer\\config\\applicationhost.config,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\.vs\\HangmanServer\\v17\\DocumentLayout.backup.json,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\.vs\\HangmanServer\\v17\\DocumentLayout.json,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\packages\\EntityFramework.6.5.2\\tools\\init.ps1,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\packages\\EntityFramework.6.5.2\\tools\\install.ps1,C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\packages\\EntityFramework.6.5.2\\tools\\net6.0\\any\\ef6.runtimeconfig.json"
+    },
+    {
+      "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.cs.analyzer.projectOutPaths",
+      "value": "C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\.sonarqube\\out\\0"
+    },
+    {
+      "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.cs.roslyn.reportFilePaths",
+      "value": "C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\.sonarqube\\out\\0\\Issues.json"
+    },
+    {
+      "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.cs.scanner.telemetry",
+      "value": "C:\\Users\\migue\\OneDrive\\Escritorio\\HangmanServer\\.sonarqube\\out\\0\\Telemetry.json"
+    },
+    {
+      "key": "sonar.login",
+      "value": "***"
+    },
+    {
+      "key": "sonar.host.url",
+      "value": "http://localhost:9000"
+    },
+    {
+      "key": "sonar.visualstudio.enable",
+      "value": "false"
+    }
+  ]
+}
