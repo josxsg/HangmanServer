@@ -10,11 +10,11 @@
     },
     {
       "key": "sonar.scanner.bootstrapStartTime",
-      "value": "1781915488000"
+      "value": "1781920749000"
     },
     {
       "key": "sonar.projectKey",
-      "value": "hangmanServer"
+      "value": "hangmanServidor"
     },
     {
       "key": "sonar.working.directory",
@@ -42,7 +42,7 @@
     },
     {
       "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.projectKey",
-      "value": "hangmanServer:08BCF73D-F901-40C3-8524-4C064DF723D4"
+      "value": "hangmanServidor:08BCF73D-F901-40C3-8524-4C064DF723D4"
     },
     {
       "key": "08BCF73D-F901-40C3-8524-4C064DF723D4.sonar.projectName",

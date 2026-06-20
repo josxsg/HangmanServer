@@ -14,16 +14,16 @@
         {
           "ruleId": "S101",
           "level": "warning",
-          "message": "Rename class 'GameContextDTO' to match pascal case naming rules, consider using 'GameContextDto'.",
+          "message": "Rename class 'CategoryDTO' to match pascal case naming rules, consider using 'CategoryDto'.",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/GameContextDTO.cs",
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/CategoryDTO.cs",
                 "region": {
-                  "startLine": 6,
+                  "startLine": 10,
                   "startColumn": 18,
-                  "endLine": 6,
-                  "endColumn": 32
+                  "endLine": 10,
+                  "endColumn": 29
                 }
               }
             }
@@ -35,16 +35,37 @@
         {
           "ruleId": "S101",
           "level": "warning",
-          "message": "Rename class 'CategoryDTO' to match pascal case naming rules, consider using 'CategoryDto'.",
+          "message": "Rename class 'AvailableMatchDTO' to match pascal case naming rules, consider using 'AvailableMatchDto'.",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/CategoryDTO.cs",
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/AvailableMatchDTO.cs",
                 "region": {
                   "startLine": 10,
                   "startColumn": 18,
                   "endLine": 10,
-                  "endColumn": 29
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'GameContextDTO' to match pascal case naming rules, consider using 'GameContextDto'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/GameContextDTO.cs",
+                "region": {
+                  "startLine": 6,
+                  "startColumn": 18,
+                  "endLine": 6,
+                  "endColumn": 32
                 }
               }
             }
@@ -108,27 +129,6 @@
                   "startColumn": 18,
                   "endLine": 10,
                   "endColumn": 32
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "S101",
-          "level": "warning",
-          "message": "Rename class 'AvailableMatchDTO' to match pascal case naming rules, consider using 'AvailableMatchDto'.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///C:/Users/migue/OneDrive/Escritorio/HangmanServer/DTOs/AvailableMatchDTO.cs",
-                "region": {
-                  "startLine": 10,
-                  "startColumn": 18,
-                  "endLine": 10,
-                  "endColumn": 35
                 }
               }
             }
